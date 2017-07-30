@@ -1,14 +1,35 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>RailsTwitter</title>
-    <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+<head>
+    <title>
+        <%= @title %>
+    </title>
+    <%= csrf_meta_tag %>
+</head>
 
-  <body>
-    <%= yield %>
-  </body>
+<body>
+
+    <div>
+        <header>
+            <nav>
+                <ul>
+                    <li>
+                        <%= link_to "Home", root_path %>
+                    </li>
+                    <li>
+                        <%= link_to "Sign in", 'signin_path' %>
+                    </li>
+                    <li>
+                        <%= link_to "Sign up", new_user_path %>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <section>
+            <%= yield %>
+        </section>
+    </div>
+</body>
+
 </html>
