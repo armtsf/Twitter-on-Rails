@@ -2,13 +2,13 @@
 #
 # Table name: users
 #
-#  id         :integer          not null, primary key
-#  handle     :string
-#  name       :string
-#  password   :string
-#  email      :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id                 :integer          not null, primary key
+#  handle             :string
+#  name               :string
+#  encrypted_password :string
+#  email              :string
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
