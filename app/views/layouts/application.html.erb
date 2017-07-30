@@ -17,15 +17,22 @@
                     <li>
                         <%= link_to "Home", root_path %>
                     </li>
-                    <li>
-                        <%= link_to "Sign in", 'signin_path' %>
-                    </li>
-                    <li>
+                    <% if signed_in? %>
+                        <li><%= link_to "Sign out", signout_path, :method => :delete %></li> 
+                    <% else %>
+                        <li><%= link_to "Sign in", signin_path %></li>
+                        <li>
                         <%= link_to "Sign up", new_user_path %>
-                    </li>
+                        </li>
+                    <% end %>
                 </ul>
             </nav>
         </header>
+        <section>
+            <% flash.each do |key, value| %>
+                <div><%= value %></div>
+            <% end %>
+        </section>
         <section>
             <%= yield %>
         </section>
