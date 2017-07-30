@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tweets</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Content</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tweets.each do |tweet| %>
+      <tr>
+        <td><%= link_to tweet.content, tweet %></td>
+        <td><%= link_to tweet.user.name, tweet.user %></td>
+        <td><%= link_to 'Edit', edit_tweet_path(tweet) %></td>
+        <td><%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+  <% if @tweets.size == 0 %>
+    <em>No tweets found</em>
+  <% end %>
+</table>
+
+<br>
+
+<%= link_to 'New Tweet', new_tweet_path %>
