@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   root 'page#home'
   get 'signup' => 'users#new'
   get 'signin' => 'sessions#new'
-  get 'signout' => 'sessions#destroy'
+  delete 'signout' => 'sessions#destroy'
+ 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
