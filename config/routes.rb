@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-  resources :tweets
+  resources :tweets, only: [:create, :destroy, :edit, :show]
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   

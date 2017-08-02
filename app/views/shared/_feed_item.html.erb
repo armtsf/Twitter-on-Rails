@@ -1,0 +1,18 @@
+<tr>
+    <td> 
+        <span>
+            <%= link_to item.user.name, item.user %> 
+        </span>
+        <span>
+            <%= link_to item.content, item %>
+        </span> 
+        <span>
+            Posted <%= time_ago_in_words(item.created_at) %> ago. 
+        </span>
+    </td>
+    <% if current_user?(item.user) %>
+        <td>
+            <%= link_to "delete", item, :method => :delete, :confirm => "You sure?", :title => item.content %>
+        </td>
+    <% end %>
+</tr>

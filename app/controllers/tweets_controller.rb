@@ -1,5 +1,7 @@
 class TweetsController < ApplicationController
   before_action :set_tweet, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate, only: [:edit, :destroy]
+  before_action :authorized, only: :destroy
 
   # GET /tweets
   # GET /tweets.json
@@ -26,15 +28,13 @@ class TweetsController < ApplicationController
   def create
     @tweet = current_user.tweets.build(tweet_params)
 
-    respond_to do |format|
       if @tweet.save
-        format.html { redirect_to @tweet, notice: 'Tweet was successfully created.' }
-        format.json { render :show, status: :created, location: @tweet }
+        flash[:success] = "Tweet was successfully posted."
+        redirect_to root_path
       else
-        format.html { render :new }
-        format.json { render json: @tweet.errors, status: :unprocessable_entity }
+        flash[:notice] = "Tweet is invalid."
+        redirect_to root_path
       end
-    end
   end
 
   # PATCH/PUT /tweets/1
@@ -55,10 +55,8 @@ class TweetsController < ApplicationController
   # DELETE /tweets/1.json
   def destroy
     @tweet.destroy
-    respond_to do |format|
-      format.html { redirect_to tweets_url, notice: 'Tweet was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+      flash[:notice] = "Tweet was successfully destroyed."
+      redirect_to root_path
   end
 
   private
@@ -71,4 +69,9 @@ class TweetsController < ApplicationController
     def tweet_params
       params.require(:tweet).permit(:content)
     end
+
+    def authorized
+      redirect_to root_path unless current_user(@tweet.user)
+    end
+
 end

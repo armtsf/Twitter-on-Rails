@@ -15,24 +15,31 @@
   <%= @user.email %>
 </p>
 
+<p>
+  <strong>Tweets:</strong> 
+  <%= @user.tweets.count %>
+</p>
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
 
 <br>
 <br>
 
-
-<% if @user.tweets %>
+<tbody>
   <h1>Tweets</h1>
-  <tbody>
-    <% @user.tweets.each do |tweet| %>
+  <% @user.tweets.each do |tweet| %>
+      <table>
+      
       <tr>
-        <td><%= link_to tweet.content, tweet %></td>
+        <td>-- <%= link_to tweet.content, tweet %></td>
         <td><%= link_to 'Edit', edit_tweet_path(tweet) %></td>
-        <td><%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete', tweet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
+      
+      </table>
     <% end %>
-  </tbody>
-<% end %>
-
-
+    <% if @user.tweets.size == 0 %>
+      <em>No tweets yet</em>
+    <% end %> 
+</tbody>

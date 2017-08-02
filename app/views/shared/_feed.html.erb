@@ -1,0 +1,7 @@
+<% unless @feed_items.empty? %>
+    <table>
+        <% @feed_items.each do |fi| %>
+            <%= render 'shared/feed_item', :item => fi%>
+        <% end %>
+    </table>
+<% end %>

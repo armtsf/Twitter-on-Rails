@@ -1,10 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Content:</strong>
+  <strong><h1>Tweet:</h1></strong>
   <%= @tweet.content %>
 </p>
-<p>Posted by <%= @tweet.user.name %>
+<p>Posted by <%= @tweet.user.name%> <%= time_ago_in_words(@tweet.created_at) %> ago.</p>
 
 <%= link_to 'Edit', edit_tweet_path(@tweet) %> |
-<%= link_to 'Back', tweets_path %>
+<% if current_user?(@tweet.user) %>
+<%= link_to "delete", @tweet, :method => :delete, :confirm => "You sure?" %> 
+<% end %> | 
+<%= link_to 'Back', user_path(@tweet.user) %>

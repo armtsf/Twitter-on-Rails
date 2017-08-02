@@ -39,7 +39,9 @@ class User < ApplicationRecord
         (user && user.salt == cookie_salt) ? user : nil
     end
 
-
+    def feed
+        Tweet.where("user_id = ?", id)
+    end
 
     private
 

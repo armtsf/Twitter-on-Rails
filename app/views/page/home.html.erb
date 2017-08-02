@@ -1,4 +1,45 @@
 
 <h1>Rails Twitter</h1> <p>
 :)
-</p>
+
+<% if signed_in? %>
+
+    <p>
+    <strong>Handle:</strong>
+    <%= current_user.handle %>
+    </p>
+
+    <p>
+    <strong>Name:</strong>
+    <%= current_user.name %>
+    </p>
+
+    <p>
+    <strong>Email:</strong>
+    <%= current_user.email %>
+    </p>
+
+    <p>
+    <strong>Tweets:</strong> 
+    <%= current_user.tweets.count %>
+    </p>
+
+    <%= link_to 'Edit', edit_user_path(current_user) %> |
+    <%= link_to 'Back', users_path %>
+
+    <br>
+    <br>
+
+    <div>
+    <%= render 'tweets/form' %>
+    </div>
+    
+    <br>
+    <br>
+
+    <h1><strong>Feed</strong></h1>
+    <div>
+        <%= render 'shared/feed' %>
+    </div>
+
+<% end %>
