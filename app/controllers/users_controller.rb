@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate, only: [:index, :edit, :update]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :following, :followers]
+  before_action :authenticate, except: [:show, :new, :create]
   before_action :correct_user, only: [:edit, :update]
 
   # GET /users
@@ -75,6 +75,17 @@ class UsersController < ApplicationController
 	  #format.json { head :no_content }
 	#end
   end
+
+	def following
+    @title = "Following"
+    @users = @user.following.all
+    render 'show_follow'
+	end
+
+	def followers
+		@title = "Followers"
+		@users = @user.followers.all
+	end
 
   private
 	# Use callbacks to share common setup or constraints between actions.

@@ -1,0 +1,16 @@
+<table>
+    <tr>
+        <td>
+            <h1>
+                <%= @title %>
+            </h1>
+            <% unless @users.empty? %>
+                <ul>
+                    <% @users.each do |user| %>
+                        <%= link_to user.name, user%>
+                    <% end %>
+                </ul>
+            <% end %>
+        </td>
+    </tr>
+</table>

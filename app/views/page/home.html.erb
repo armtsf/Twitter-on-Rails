@@ -20,6 +20,16 @@
     </p>
 
     <p>
+    <strong> <%= link_to 'Following', following_user_path(current_user)%>: </strong>
+    <%= current_user.following.count%>
+    </p>
+
+    <p>
+    <strong> <%= link_to 'Followers', followers_user_path(current_user)%>: </strong>
+    <%= current_user.followers.count%>
+    </p>
+
+    <p>
     <strong>Tweets:</strong> 
     <%= current_user.tweets.count %>
     </p>

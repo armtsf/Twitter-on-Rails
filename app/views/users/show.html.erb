@@ -16,11 +16,23 @@
 </p>
 
 <p>
+  <strong> <%= link_to 'Following', following_user_path(@user)%>: </strong>
+  <%= @user.following.count%>
+</p>
+
+<p>
+  <strong> <%= link_to 'Followers', followers_user_path(@user)%>: </strong>
+  <%= @user.followers.count%>
+</p>
+
+<p>
   <strong>Tweets:</strong> 
   <%= @user.tweets.count %>
 </p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
+
+<%= render 'follow_form' if signed_in? %>
+
 <%= link_to 'Back', users_path %>
 
 <br>
