@@ -1,4 +1,4 @@
-# README
+# Twitter On Rails
 
 This is a basic Twitter app, implemented by Ruby and Rails framework.
 
